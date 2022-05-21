@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 namespace ChickenGames.Algorithm
 {
     using Sort;
+    using Tree;
 
     internal class Program
     {
         static void Main(string[] args)
         {
-            int[] array = new int[]
-            {
-                2, 1, 6, 8,6,4,3, 2, 1, 0,
-            };
-            array.QuickSort();
-            array.Log();
+            //int[] array = new int[]
+            //{
+            //    2, 1, 6, 8,6,4,3, 2, 1, 0,
+            //};
+            //array.QuickSort();
+            //array.Log();
+
+            BinarySearchTree.Test();
         }
 
 
