@@ -19,6 +19,7 @@ namespace ChickenGames.Algorithm.Tree
         {
             var bst = new BinarySearchTree();
             bst.Add(5, 3, 2, 1, 3, 10, 0, 5, 3);
+            bst.PrintTree();
             var sort = bst.GetSortedData();
             sort.ForEach(d => Console.WriteLine(d));
         }
@@ -72,6 +73,22 @@ namespace ChickenGames.Algorithm.Tree
             List<int> result = new List<int>();
             SortRecursive(result, root);
             return result;
+        }
+
+
+        /// <summary>
+        /// DFS 방식으로 작성
+        /// </summary>
+        public void PrintTree()
+        {
+            void PrintRecursive(TreeNode node, int depth)
+            {
+                var blank = new string(' ', depth * 4);
+                Console.WriteLine($"{blank}{node.data}");
+                if (node.leftChild != null) PrintRecursive(node.leftChild, depth + 1);
+                if (node.rightChild != null) PrintRecursive(node.rightChild, depth + 1);
+            }
+            PrintRecursive(root, 0);
         }
     }
 
