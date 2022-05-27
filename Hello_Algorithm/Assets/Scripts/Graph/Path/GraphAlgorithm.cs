@@ -1,4 +1,4 @@
-using System.Collections;
+Ôªøusing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ namespace ChickenGames.Graph
         public static Dictionary<string, int> Run(
             Dictionary<string, Node> nodes,
             string from,
-            Dictionary<string, string> prevs // º±«‡ ≥ÎµÂµÈ ±‚∑œ
+            Dictionary<string, string> prevs // ÏÑ†Ìñâ ÎÖ∏ÎìúÎì§ Í∏∞Î°ù
             )
         {
             Dictionary<string, int> minDists = new Dictionary<string, int>();

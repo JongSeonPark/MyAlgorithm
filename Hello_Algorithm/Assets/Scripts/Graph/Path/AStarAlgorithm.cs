@@ -44,8 +44,7 @@ namespace ChickenGames.Graph
                 foreach (var entry in roads)
                 {
                     GraphNodeObject next = entry.Key;
-                    float weight = entry.Value + Vector2.SqrMagnitude(
-                        endPoint.transform.position - next.transform.position);
+                    float weight = entry.Value + endPoint.GetDistance(next);
                     float newDist = minDist + weight;
 
                     float nextMinDist = minDists[next];
@@ -56,7 +55,7 @@ namespace ChickenGames.Graph
 
                     if (next == endPoint) return minDists;
                     GraphNodeCandidate newCandidate = new GraphNodeCandidate(next, newDist, endPoint);
-                    next.Visit();
+                    next.SettingVisitColor();
                     open.Add(newCandidate);
                     open.Sort((s1, s2) =>
                     {
@@ -90,7 +89,7 @@ namespace ChickenGames.Graph
             // open은 나중에 피보나치 heap, 우선순위 큐로 변경
             List<GraphNodeCandidate> open = new List<GraphNodeCandidate>();
             open.Add(new GraphNodeCandidate(startPoint, 0, endPoint));
-            startPoint.Visit();
+            startPoint.SettingVisitColor();
 
             while (open.Count != 0)
             {
@@ -122,16 +121,16 @@ namespace ChickenGames.Graph
                         GraphNodeObject path = prevs[endPoint];
                         while (path != startPoint)
                         {
-                            path.Path();
+                            path.SettingPathColor();
                             path = prevs[path];
                         }
-                        startPoint.Path();
+                        startPoint.SettingPathColor();
 
                         yield break;
                     }
 
                     GraphNodeCandidate newCandidate = new GraphNodeCandidate(next, newDist, endPoint);
-                    next.Visit();
+                    next.SettingVisitColor();
                     open.Add(newCandidate);
                     
                     yield return new WaitForSeconds(0.005f);
@@ -157,7 +156,7 @@ namespace ChickenGames.Graph
         {
             this.node = node;
             this.weight = weight;
-            sqrDist = Vector2.SqrMagnitude(node.transform.position - endPoint.transform.position);
+            sqrDist = node.GetDistance(endPoint);
         }
 
         public GraphNodeObject Node { get => node; set => node = value; }

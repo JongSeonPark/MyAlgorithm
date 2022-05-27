@@ -59,8 +59,8 @@ public class GraphNodeManager : MonoBehaviour
                 var node = nodes[y * (int)size.y + x];
                 if(node.GraphNodeState != GraphNodeState.OBSTACLE)
                 {
-                    var mag = Vector2.SqrMagnitude(
-                        targetNode.transform.position - node.transform.position);
+                    
+                    var mag = targetNode.GetDistance(node);
                     targetNode.Roads.Add(node, mag);
                 }
             }

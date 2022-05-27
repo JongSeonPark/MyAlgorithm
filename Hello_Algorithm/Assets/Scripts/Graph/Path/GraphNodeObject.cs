@@ -8,6 +8,9 @@ public enum GraphNodeState
     STARTPOINT,
     DESTINATION,
     OBSTACLE,
+
+    //MST용
+    MSTNODE,
 }
 
 public static class GraphExtension
@@ -19,6 +22,7 @@ public static class GraphExtension
     {
         switch (state)
         {
+            case GraphNodeState.MSTNODE: return Color.red;
             case GraphNodeState.STARTPOINT: return Color.red;
             case GraphNodeState.DESTINATION: return Color.blue;
             case GraphNodeState.OBSTACLE: return Color.black;
@@ -41,6 +45,10 @@ public class GraphNodeObject : MonoBehaviour
 
     Dictionary<GraphNodeObject, float> roads = new Dictionary<GraphNodeObject, float>();
 
+    // 코드 퍼포먼스를 위해  sqrMagnitude사용
+    public float GetDistance(GraphNodeObject target) =>
+        Vector2.SqrMagnitude(transform.position - target.transform.position);
+
     public GraphNodeState GraphNodeState { get => graphNodeState; set
         {
             graphNodeState = value;
@@ -55,12 +63,12 @@ public class GraphNodeObject : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void Visit()
+    public void SettingVisitColor()
     {
         spriteRenderer.color = GraphExtension.VisitColor();
     }
 
-    public void Path()
+    public void SettingPathColor()
     {
         spriteRenderer.color = GraphExtension.PathColor();
     }
