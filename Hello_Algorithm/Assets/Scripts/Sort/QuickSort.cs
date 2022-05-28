@@ -39,7 +39,7 @@ namespace ChickenGames.Sort
             int Partition(T[] arr, int left, int right)
             {
                 int pivot = left;
-                for(int i = left; i < right - 1; i++)
+                for(int i = left; i < right; i++)
                 {
                     var compare = comparer(arr[i], arr[right]);
                     if (compare < 0)
@@ -50,7 +50,12 @@ namespace ChickenGames.Sort
                         pivot++;
                     }
                 }
-                
+                {
+                    var temp = arr[right];
+                    arr[right] = arr[pivot];
+                    arr[pivot] = temp;
+                }
+
                 return pivot;
             }
 
