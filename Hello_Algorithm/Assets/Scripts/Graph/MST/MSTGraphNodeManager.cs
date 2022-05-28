@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ChickenGames.Sort;
 
 public enum MSTGraphManagerState
 {
@@ -55,6 +56,7 @@ public class MSTGraphNodeManager : MonoBehaviour
         }
 
         EventManager.Instance.AddListener<NodeClickEvent>(NodeClickEvent);
+        Sort.QuickSortTest();
     }
 
     void Update()
@@ -63,6 +65,12 @@ public class MSTGraphNodeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2)) MSTGraphManagerState = MSTGraphManagerState.EREASENODE;
         if (Input.GetKeyDown(KeyCode.Alpha3)) MSTGraphManagerState = MSTGraphManagerState.LINKEDGE;
     }
+
+    public void GenerateMST()
+    {
+
+    }
+
 
     public void NodeClickEvent(NodeClickEvent evt)
     {
