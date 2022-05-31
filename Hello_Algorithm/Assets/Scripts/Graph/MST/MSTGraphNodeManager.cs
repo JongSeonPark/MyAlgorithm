@@ -56,7 +56,6 @@ public class MSTGraphNodeManager : MonoBehaviour
         }
 
         EventManager.Instance.AddListener<NodeClickEvent>(NodeClickEvent);
-        Sort.QuickSortTest();
     }
 
     void Update()
