@@ -76,6 +76,7 @@ private:
 		int midX = min_x + width / 2.f;
 		int midY = min_y + height / 2.f;
 
+		topLeft = new Quadtree()
 	}
 };
 

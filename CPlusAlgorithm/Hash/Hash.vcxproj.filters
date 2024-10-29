@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BeakJoon10828Stack.cpp">
+    <ClCompile Include="Hash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

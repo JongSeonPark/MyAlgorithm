@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <Queue>
 using namespace std;
 
 class Node
@@ -168,19 +170,58 @@ public:
         return bst;
     }
 
+    // 중위 순회
     void TraverseInOrder()
     {
         TraverseInOrderRecursive(rootNode);
     }
 
+    // 전위 순회
     void TraversePreOrder()
     {
         TraversePreOrderRecursive(rootNode);
     }
 
+    // 후위 순회
     void TraversePostOrder()
     {
         TraversePostOrderRecursive(rootNode);
+    }
+
+    // DFS
+    void SearchDepthFirst()
+    {
+        stack<Node*> stack;
+        stack.push(rootNode);
+        while (!stack.empty())
+        {
+            Node* next = stack.top();
+            stack.pop();
+            cout << next->value << " ";
+
+            if (next->right)
+                stack.push(next->right);
+            if (next->left)
+                stack.push(next->left);
+        }
+    }
+
+    // BFS
+    void SearchBreadthFirst()
+    {
+        queue<Node*> queue;
+        queue.push(rootNode);
+        while (!queue.empty())
+        {
+            Node* next = queue.front();
+            queue.pop();
+            cout << next->value << " ";
+            if (next->left)
+                queue.push(next->left);
+            if (next->right)
+                queue.push(next->right);
+        }
+
     }
 
 private:
@@ -242,5 +283,11 @@ int main()
     cout << endl;
     copyBst.TraversePostOrder();
     cout << endl;
+    cout << endl;
 
+
+    bst.SearchDepthFirst();
+    cout << endl;
+    bst.SearchBreadthFirst();
+    cout << endl;
 }
